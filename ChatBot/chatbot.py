@@ -16,3 +16,9 @@ age = str(age)
 
 print("""Your age is """ + age + """, that's good time to start programming!")
 Now I will prove to you that I can count to any number you want""")
+
+num = int(input())
+x = int()
+while x <= num:
+    print(x)
+    x += 1
