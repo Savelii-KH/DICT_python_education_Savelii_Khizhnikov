@@ -22,3 +22,21 @@ x = int()
 while x <= num:
     print(x)
     x += 1
+
+print("""Completed, have a nice day!
+Lets test your programming knowledge
+Why do we use methods?
+1. To repeat a statement multiple times.
+2. To decompose a program into several small subroutines.
+3. To determine the execution time of a program.
+4. To interrupt the execution of a program.""")
+
+
+test = 0
+while test != 2:
+    test = int(input())
+    if test == 2:
+        print("""Completed, have a nice day!
+Congratulations, have a nice day!""")
+    else:
+        print("Please, try again.")
