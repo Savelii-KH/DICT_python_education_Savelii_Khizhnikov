@@ -23,7 +23,7 @@ while x <= num:
     print(x)
     x += 1
 
-print("""Completed, have a nice day!
+print("""
 Lets test your programming knowledge
 Why do we use methods?
 1. To repeat a statement multiple times.
