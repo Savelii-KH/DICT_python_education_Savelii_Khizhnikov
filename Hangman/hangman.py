@@ -5,7 +5,8 @@ word_number = random.randint(0, 3)
 word = list(code_words[word_number])
 length = len(word)
 replaced_word = ["-" for letter in word]
-print("""       HANGMAN         
+print("""                       HANGMAN       
+  
 If you want play print "Start", else you exit from game
 """)
 joined_word = ("".join(word))
@@ -14,8 +15,8 @@ x = 8
 start = input()
 if start == "Start":
     while x > 0:
-        print("".join(replaced_word))
-        print("Your tries: " + str(x))
+        print("\n" + "".join(replaced_word))
+#        print("Your tries: " + str(x))
         letter = str(input("Input a letter: ").strip(""))
         if letter in word:
             for i, c in enumerate(word):
@@ -26,6 +27,6 @@ if start == "Start":
                 break
         else:
             x -= 1
+            print("That's letter doesn't appear in the word")
     if x == 0:
         print("You lost")
-
