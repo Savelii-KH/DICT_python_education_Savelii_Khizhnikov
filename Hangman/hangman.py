@@ -1,6 +1,13 @@
+import random
+
+words = ("python", "php", "java", "javascript")
+word = random.choice(words)
+
 print("HANGMAN")
-word = input("Guess the word: ")
-if word == "python":
-    print("You survived!")
+
+input_word = input("Guess the word: ")
+
+if input_word == word:
+    print("You win!")
 else:
-    print("You lost")
+    print("You lost!")
