@@ -5,10 +5,8 @@ word_number = random.randint(0, 3)
 word = list(code_words[word_number])
 length = len(word)
 replaced_word = ["-" for letter in word]
-print("""                       HANGMAN       
-  
-If you want play print "Start", else you exit from game
-""")
+print("HANGMAN")
+print("If you want play print \"Start\", else you exit from game")
 joined_word = ("".join(word))
 x = 8
 
@@ -16,17 +14,30 @@ start = input()
 if start == "Start":
     while x > 0:
         print("\n" + "".join(replaced_word))
-#        print("Your tries: " + str(x))
         letter = str(input("Input a letter: ").strip(""))
-        if letter in word:
-            for i, c in enumerate(word):
-                if letter == c:
-                    replaced_word[i] = letter
-            if "-" not in replaced_word:
-                print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
-                break
+        letter_len = len(letter)
+        if letter.isalpha():
+            if letter.islower():
+                if letter_len == 1:
+                    if letter in word:
+                        for i, c in enumerate(word):
+                            if letter in replaced_word[i]:
+                                x -= 1
+                                print("You\'ve already guessed this letter")
+                                continue
+                            if letter == c:
+                                replaced_word[i] = letter
+                            if "-" not in replaced_word:
+                                print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
+                                break
+                    else:
+                        x -= 1
+                        print("That's letter doesn't appear in the word")
+                else:
+                    print("You should input a single letter")
+            else:
+                print("Please, input a lowercase English letter")
         else:
-            x -= 1
-            print("That's letter doesn't appear in the word")
+            print("Please, input a English letter")
     if x == 0:
         print("You lost")
