@@ -49,8 +49,10 @@ def game():
             print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
             start_game()
             return
-    if x <= 0:
-        print("You lost!")
-        return
+        if x <= 0:
+            print("You lost!\n")
+            start_game()
+            return
+
 
 start_game()
