@@ -1,7 +1,9 @@
-print("""Starting to make a coffee
-Grinding coffee beans
-Boiling water
-Mixing boiled water with crushed coffee beans
-Pouring coffee into the cup
-Pouring some milk into the cup
-Coffee is ready!""")
+print("Write how many cups of coffee you will need:")
+cups = input()
+watter = int(cups) * 200
+milk = int(cups) * 50
+beans = int(cups) * 15
+print("For " + cups + " cups of coffee you will need:")
+print(str(watter) + " ml of watter")
+print(str(milk) + " ml of milk")
+print(str(beans) + " g of coffee beans")
