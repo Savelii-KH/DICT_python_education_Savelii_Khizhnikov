@@ -1,20 +1,29 @@
 import random
 
-code_words = ["python", "java", "javascript", "php"]
-word_number = random.randint(0, 3)
-word = list(code_words[word_number])
-length = len(word)
-replaced_word = ["-" for letter in word]
-print("HANGMAN")
-print("If you want play print \"Start\", else you exit from game")
-joined_word = ("".join(word))
-x = 8
+print("                             HANGMAN")
 
-start = input()
-if start == "Start" or start == "start":
-    while x > 0:
+
+def start_game():
+    start = input("If you want play print \"Start\", else if you want exit print \"Exit\": ")
+    if start == "Start" or start == "start":
+        print("\nThe game started!")
+        game()
+    elif start == "Exit" or start == "exit":
+        print("You will exit")
+
+
+def game():
+    code_words = ["python", "java", "javascript", "php"]
+    word_number = random.randint(0, 3)
+    word = list(code_words[word_number])
+    length = len(word)
+    replaced_word = ["-" for letter in word]
+    joined_word = ("".join(word))
+    x = 8
+
+    while True:
         print("\n" + "".join(replaced_word))
-        letter = str(input("Input a letter: ").strip(" "))
+        letter = str(input("Input a letter: ").strip(""))
         letter_len = len(letter)
         if letter.isalpha():
             if letter.islower():
@@ -38,6 +47,8 @@ if start == "Start" or start == "start":
             print("Please, input a English letter")
         if "-" not in replaced_word:
             print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
-            break
-    if x == 0:
-        print("You lost")
+            start_game()
+            return
+
+
+start_game()
