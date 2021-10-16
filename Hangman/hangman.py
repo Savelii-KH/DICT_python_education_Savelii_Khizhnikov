@@ -11,10 +11,10 @@ joined_word = ("".join(word))
 x = 8
 
 start = input()
-if start == "Start":
+if start == "Start" or start == "start":
     while x > 0:
         print("\n" + "".join(replaced_word))
-        letter = str(input("Input a letter: ").strip(""))
+        letter = str(input("Input a letter: ").strip(" "))
         letter_len = len(letter)
         if letter.isalpha():
             if letter.islower():
@@ -27,9 +27,6 @@ if start == "Start":
                                 continue
                             if letter == c:
                                 replaced_word[i] = letter
-                            if "-" not in replaced_word:
-                                print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
-                                break
                     else:
                         x -= 1
                         print("That's letter doesn't appear in the word")
@@ -39,5 +36,8 @@ if start == "Start":
                 print("Please, input a lowercase English letter")
         else:
             print("Please, input a English letter")
+        if "-" not in replaced_word:
+            print("Your word is: '" + str("".join(replaced_word)) + "', and you won!")
+            break
     if x == 0:
         print("You lost")
