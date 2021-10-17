@@ -23,6 +23,24 @@ def espresso():
     water_In -= 250
     beans_in -= 16
     cups_in -= 1
+    if water_In < 0:
+        print("Sorry, not enough water")
+        money_in -= 4
+        water_In += 250
+        beans_in += 16
+        cups_in += 1
+    elif beans_in < 0:
+        print("Sorry, not enough coffee beans")
+        money_in -= 4
+        water_In += 250
+        beans_in += 16
+        cups_in += 1
+    elif cups_in < 0:
+        print("Sorry, not enough cups")
+        money_in -= 4
+        water_In += 250
+        beans_in += 16
+        cups_in += 1
     return
 
 
@@ -33,6 +51,35 @@ def latte():
     milk_in -= 75
     beans_in -= 20
     cups_in -= 1
+    if water_In < 0:
+        print("Sorry, not enough water")
+        money_in -= 7
+        water_In += 350
+        milk_in += 75
+        beans_in += 20
+        cups_in += 1
+    elif milk_in < 0:
+        print("Sorry, not enough milk")
+        money_in -= 7
+        water_In += 350
+        milk_in += 75
+        beans_in += 20
+        cups_in += 1
+    elif beans_in < 0:
+        print("Sorry, not enough coffee beans")
+        money_in -= 7
+        water_In += 350
+        milk_in += 75
+        beans_in += 20
+        cups_in += 1
+    elif cups_in < 0:
+        print("Sorry, not enough cups")
+        money_in -= 7
+        water_In += 350
+        milk_in += 75
+        beans_in += 20
+        cups_in += 1
+    return
 
 
 def cappuccino():
@@ -42,33 +89,61 @@ def cappuccino():
     milk_in -= 100
     beans_in -= 12
     cups_in -= 1
+    if water_In < 0:
+        print("Sorry, not enough water")
+        money_in -= 6
+        water_In += 200
+        milk_in += 100
+        beans_in += 12
+        cups_in += 1
+    elif milk_in < 0:
+        print("Sorry, not enough milk")
+        money_in -= 6
+        water_In += 200
+        milk_in += 100
+        beans_in += 12
+        cups_in += 1
+    elif beans_in < 0:
+        print("Sorry, not enough coffee beans")
+        money_in -= 6
+        water_In += 200
+        milk_in += 100
+        beans_in += 12
+        cups_in += 1
+    elif cups_in < 0:
+        print("Sorry, not enough cups")
+        money_in -= 6
+        water_In += 200
+        milk_in += 100
+        beans_in += 12
+        cups_in += 1
+    return
 
 
 while True:
-    print("Write action (buy, fill, take)")
+    print("Write action (buy, fill, take, remaining, exit)")
     answer = input()
     if answer == "buy":
         while True:
-            print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino")
+            print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, 4 - back to main menu:")
             x = input()
+            print("I have enough resources, making you a coffee!")
             if x == "1":
                 espresso()
-                ing_in()
                 break
             elif x == "2":
                 latte()
-                ing_in()
                 break
             elif x == "3":
                 cappuccino()
-                ing_in()
+                break
+            elif x == "4":
                 break
             else:
                 print("Please, answer what do you want buy")
     elif answer == "take":
         print("I gave you " + str(money_in))
         money_in *= 0
-        ing_in()
     elif answer == "fill":
         added_water = int(input("Write how many ml of watter you want add: "))
         added_milk = int(input("Write how many ml of milk you want add: "))
@@ -79,6 +154,7 @@ while True:
         milk_in += added_milk
         beans_in += added_beans
         cups_in += added_cups
-
+    elif answer == "remaining":
         ing_in()
-    break
+    elif answer == "exit":
+        break
