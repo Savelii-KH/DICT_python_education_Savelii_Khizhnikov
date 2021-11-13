@@ -41,7 +41,7 @@ pole()
 
 
 while True:
-    inp = input("Write coordinate(yx): ")
+    inp = input("Write coordinate(y x): ")
     list_inp = list(inp)
     joined_inp = "".join(list_inp)
     if int(joined_inp[:1]) >= 1 or int(joined_inp[:1]) <= 3:
@@ -65,46 +65,51 @@ while True:
                         xo_placed()
                     else:
                         print("This cell is occupied! Choose another one!")
+            if joined_inp[:1] == "2":
+                if joined_inp[2:3] == "1":
+                    if ceil2[0] != "X" and ceil2[0] != "O":
+                        ceil2[0] = xo
+                        xo_placed()
+                    else:
+                        print(f"This cell is occupied! Choose another one!")
+                if joined_inp[2:3] == "2":
+                    if ceil2[1] != "X" and ceil2[1] != "O":
+                        ceil2[1] = xo
+                        xo_placed()
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                if joined_inp[2:3] == "3":
+                    if ceil2[2] != "X" and ceil2[2] != "O":
+                        ceil2[2] = xo
+                        xo_placed()
+                    else:
+                        print("This cell is occupied! Choose another one!")
+
+            if joined_inp[:1] == "3":
+                if joined_inp[2:3] == "1":
+                    if ceil3[0] != "X" and ceil3[0] != "O":
+                        ceil3[0] = xo
+                        xo_placed()
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                if joined_inp[2:3] == "2":
+                    if ceil3[1] != "X" and ceil3[1] != "O":
+                        ceil3[1] = xo
+                        xo_placed()
+                    else:
+                        print("This cell is occupied! Choose another one!")
+                if joined_inp[2:3] == "3":
+                    if ceil3[2] != "X" and ceil3[2] != "O":
+                        ceil3[2] = xo
+                        xo_placed()
+                    else:
+                        print("This cell is occupied! Choose another one!")
             pole()
 
     if int(joined_inp[:1]) < 1 or int(joined_inp[:1]) > 3:
         print("Y must be between 1 and 3!")
     if int(joined_inp[2:3]) < 1 or int(joined_inp[2:3]) > 3:
         print("X must be between 1 and 3!")
-
-    if joined_inp[:1] == "2":
-        if joined_inp[2:3] == "1":
-            if ceil2[0] != "X" and ceil2[0] != "O":
-                ceil2[0] = xo
-            else:
-                print(f"This cell is occupied! Choose another one!")
-        if joined_inp[2:3] == "2":
-            if ceil2[1] != "X" and ceil2[1] != "O":
-                ceil2[1] = xo
-            else:
-                print("This cell is occupied! Choose another one!")
-        if joined_inp[2:3] == "3":
-            if ceil2[2] != "X" and ceil2[2] != "O":
-                ceil2[2] = xo
-            else:
-                print("This cell is occupied! Choose another one!")
-
-    if joined_inp[:1] == "3":
-        if joined_inp[2:3] == "1":
-            if ceil3[0] != "X" and ceil3[0] != "O":
-                ceil3[0] = xo
-            else:
-                print("This cell is occupied! Choose another one!")
-        if joined_inp[2:3] == "2":
-            if ceil3[1] != "X" and ceil3[1] != "O":
-                ceil3[1] = xo
-            else:
-                print("This cell is occupied! Choose another one!")
-        if joined_inp[2:3] == "3":
-            if ceil3[2] != "X" and ceil3[2] != "O":
-                ceil3[2] = xo
-            else:
-                print("This cell is occupied! Choose another one!")
 
     if ceil1[0] == ceil1[1] == ceil1[2] != "_":
         wins += 1
