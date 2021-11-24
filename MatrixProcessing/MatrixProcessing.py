@@ -21,3 +21,5 @@ if mat_size_a == mat_size_b:
         for j in range(len(mat_a[i])):
             print(int(mat_a[i][j]) + int(mat_b[i][j]), end=" ")
         print(" ")
+if mat_size_a != mat_size_b:
+    print("ERROR")
