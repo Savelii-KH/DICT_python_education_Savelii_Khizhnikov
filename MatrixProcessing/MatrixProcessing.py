@@ -1,31 +1,59 @@
+def input_matrix():
+    mat_size = input(f"Enter size of matrix: ").split()
+    mat = []
+    print(f"Enter matrix:")
+    for i in range(int(mat_size[0])):
+        line = input().split()
+        mat.append(line)
+        if len(mat[i]) != int(mat_size[1]):
+            print("Incorrect size")
+            break
+    return mat, mat_size,
+
+
 def summa():
+    a, a_size = input_matrix()
+    b, b_size = input_matrix()
     print("The result is:")
-    if mat_size_a == mat_size_b:
-        for i in range(len(mat_a)):
-            for j in range(len(mat_a[i])):
-                print(int(mat_a[i][j]) + int(mat_b[i][j]), end=" ")
+    if a_size == b_size:
+        for i in range(len(a)):
+            for j in range(len(a[i])):
+                print(int(a[i][j]) + int(b[i][j]), end=" ")
             print(" ")
-    if mat_size_a != mat_size_b:
+    if a_size != b_size:
         print("ERROR")
 
 
 def constant():
+    a, a_size = input_matrix()
+    const = int(input())
     print("The result is:")
-    for i in range(len(mat_a)):
-        for j in range(len(mat_a[i])):
-            print(int(mat_a[i][j]) * int(const), end=" ")
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            print(int(a[i][j]) * int(const), end=" ")
         print(" ")
 
 
-def multi():
+def multiply():
+    a, a_size = input_matrix()
+    b, b_size = input_matrix()
     c = 0
     print("The result is:")
-    for i in range(len(mat_a)):
-        for j in range(len(mat_a[i])):
-            for k in range(len(mat_b)):
-                    c += int(mat_a[i][k]) * int(mat_b[k][j])
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            for k in range(len(b)):
+                c += int(a[i][k]) * int(b[k][j])
             print(c, end=" ")
             c = 0
+        print(" ")
+
+
+def transpose():
+    a, a_size = input_matrix()
+    print("The result is:")
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            print(int(a[j][i]), end=" ")
         print(" ")
 
 
@@ -33,67 +61,18 @@ while True:
     print("""1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit""")
     choice = input("• ")
     if choice == "1":
-        mat_size_a = input("Enter size of first matrix: ").split()
-        mat_a = []
-        print("Enter first matrix:")
-        for i in range(int(mat_size_a[0])):
-            line = input().split()
-            mat_a.append(line)
-            if len(mat_a[i]) != int(mat_size_a[1]):
-                print("Incorrect size")
-                break
-
-        mat_size_b = input("Enter size of second matrix: ").split()
-        mat_b = []
-        print("Enter second matrix:")
-        for c in range(int(mat_size_b[0])):
-            line = input().split()
-            mat_b.append(line)
-            if len(mat_b[c]) != int(mat_size_b[1]):
-                print("Incorrect size")
-                break
         summa()
-        print("")
-
     elif choice == "2":
-        mat_size_a = input("Enter size of  matrix: ").split()
-        mat_a = []
-        print("Enter matrix:")
-        for i in range(int(mat_size_a[0])):
-            line = input().split()
-            mat_a.append(line)
-            if len(mat_a[i]) != int(mat_size_a[1]):
-                print("Incorrect size")
-                break
-        const = int(input("Enter constant: "))
         constant()
-        print("")
-
     elif choice == "3":
-        mat_size_a = input("Enter size of first matrix: ").split()
-        mat_a = []
-        print("Enter first matrix:")
-        for i in range(int(mat_size_a[0])):
-            line = input().split()
-            mat_a.append(line)
-            if len(mat_a[i]) != int(mat_size_a[1]):
-                print("Incorrect size")
-                break
-
-        mat_size_b = input("Enter size of second matrix: ").split()
-        mat_b = []
-        print("Enter second matrix:")
-        for c in range(int(mat_size_b[0])):
-            line = input().split()
-            mat_b.append(line)
-            if len(mat_b[c]) != int(mat_size_b[1]):
-                print("Incorrect size")
-                break
-        multi()
-        print("")
-
-    if choice == "0":
+        multiply()
+    elif choice == "4":
+        transpose()
+    elif choice == "0":
         break
+    else:
+        print("Incorrect parameter")
