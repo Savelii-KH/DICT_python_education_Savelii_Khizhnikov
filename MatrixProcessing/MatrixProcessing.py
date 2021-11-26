@@ -49,12 +49,27 @@ def multiply():
 
 
 def transpose():
-    a, a_size = input_matrix()
-    print("The result is:")
-    for i in range(len(a)):
-        for j in range(len(a[i])):
-            print(int(a[j][i]), end=" ")
-        print(" ")
+    while True:
+        print("""1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line""")
+        action = input("• ")
+        a, a_size = input_matrix()
+        if action == "1":
+            print("The result is:")
+            for i in range(len(a)):
+                for j in range(len(a[i])):
+                    print(int(a[j][i]), end=" ")
+                print(" ")
+
+        elif action == "2":
+            print("The result is:")
+            for i in range(len(a) - 1, -1, -1):
+                for j in range(len(a[i])):
+                    print(int(a[-1-j][i]), end=" ")
+                print(" ")
+        break
 
 
 while True:
