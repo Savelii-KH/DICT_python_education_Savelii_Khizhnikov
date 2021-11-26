@@ -69,6 +69,14 @@ def transpose():
                 for j in range(len(a[i])):
                     print(int(a[-1-j][i]), end=" ")
                 print(" ")
+
+        elif action == "3":
+            print("The result is:")
+            for i in range(len(a)):
+                for j in range(len(a[i])):
+                    print(int(a[i][-1-j]), end=" ")
+                print(" ")
+
         break
 
 
