@@ -6,7 +6,7 @@ if count > 0:
     names = {input("• ") for i in range(count)}
     print("Enter the total amount: ")
     amount = int(input())
-    names_d = dict.fromkeys(names, round(amount/count, 2))
-    print(names_d)
+    names = dict.fromkeys(names, round(amount/count, 2))
+    print(names)
 else:
     print("No one is joining for the party")
