@@ -13,7 +13,10 @@ if count > 0:
     lucky = random.choice(list(names.keys()))
     if action == "Yes":
         print(f"{lucky} is the lucky one!")
+        names = dict.fromkeys(names, round(amount / (count - 1), 2))
+        names[lucky] = 0
     elif action == "No":
         print("No one is going to be lucky")
+    print("\n", names)
 else:
     print("No one is joining for the party")
