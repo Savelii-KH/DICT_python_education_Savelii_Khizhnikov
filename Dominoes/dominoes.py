@@ -25,8 +25,13 @@ if snake in player_d:
 else:
     comp_d.remove(snake)
     move = "computer"
-print(f"Stock pieces: {dominoes}")
-print(f"Player pieces: {player_d}")
-print(f"Computer pieces: {comp_d}")
-print(f"Domino snake: {snake}")
-print(f"Status: {move}")
+print("=" * 70)
+print(f"Stock size: {len(dominoes)}")
+print(f"Computer pieces: {len(comp_d)} \n")
+print(snake)
+print("\nYour pieces:")
+[print(f"{i+1}: {player_d[i]} ") for i in range(len(player_d))]
+if move == "player":
+    print("Status: It's your turn to make a move. Enter your command.")
+else:
+    print("\nStatus: Computer is about to make a move. Press Enter to continue...")
