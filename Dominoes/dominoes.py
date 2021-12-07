@@ -89,7 +89,7 @@ while True:
         count = 0
         for i in range(len(pole_snake)):
             for j in pole_snake[i]:
-                if j == pole_snake[0][0]
+                if j == pole_snake[0][0]:
                     count += 1
         if count == 8:
             print("Status: The game is over. It's a draw!")
