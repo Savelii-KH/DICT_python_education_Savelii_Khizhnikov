@@ -1,17 +1,17 @@
 import random
-var = random.choice(["rock", "scissors", "paper"])
-a = input("• ")
-if a == var:
-    print(f"There is draw ({a})")
-if a == "scissors" and var == "rock":
-    print(f"Sorry, but the computer chose {var}")
-if a == "scissors" and var == "paper":
-    print(f"Well done. The computer chose {var} and failed")
-if a == "rock" and var == "scissors":
-    print(f"Well done. The computer chose {var} and failed")
-if a == "rock" and var == "paper":
-    print(f"Sorry, but the computer chose {var}")
-if a == "paper" and var == "scissors":
-    print(f"Sorry, but the computer chose {var}")
-if a == "paper" and var == "rock":
-    print(f"Well done. The computer chose {var} and failed")
+elements = {"paper": "rock", "rock": "scissors", "scissors": "paper"}
+while True:
+    comp = random.choice(list(elements.values()))
+    player = input("• ")
+    if player in elements.keys():
+        if player == comp:
+            print(f"There is a draw {comp}")
+        if player == elements[comp]:
+            print(f"Sorry, but the computer chose {comp}")
+        if comp == elements[player]:
+            print(f"Well done. The computer chose {comp} and failed")
+    elif player == "!exit":
+        print("Bye!")
+        break
+    else:
+        print("Invalid input")
