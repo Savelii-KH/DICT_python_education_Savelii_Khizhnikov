@@ -1,8 +1,17 @@
-print("Print rock, scissors or paper")
-a = input("· ")
-if a == "rock":
-    print("Sorry, but the computer chose paper")
-if a == "scissors":
-    print("Sorry, but the computer chose rock")
-if a == "paper":
-    print("Sorry, but the computer chose scissors")
+import random
+var = random.choice(["rock", "scissors", "paper"])
+a = input("• ")
+if a == var:
+    print(f"There is draw ({a})")
+if a == "scissors" and var == "rock":
+    print(f"Sorry, but the computer chose {var}")
+if a == "scissors" and var == "paper":
+    print(f"Well done. The computer chose {var} and failed")
+if a == "rock" and var == "scissors":
+    print(f"Well done. The computer chose {var} and failed")
+if a == "rock" and var == "paper":
+    print(f"Sorry, but the computer chose {var}")
+if a == "paper" and var == "scissors":
+    print(f"Sorry, but the computer chose {var}")
+if a == "paper" and var == "rock":
+    print(f"Well done. The computer chose {var} and failed")
