@@ -126,6 +126,7 @@ while True:
                 break
         else:
             logic.append(dominoes[0])
+            dominoes.remove(dominoes[0])
             move = "player"
     else:
         player_choice = input("Status: It's your turn to make a move. Enter your command: ")
