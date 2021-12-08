@@ -1,5 +1,6 @@
 import random
 dominoes = [[x, y] for x in range(0, 7) for y in range(x, 7)]
+random.shuffle(dominoes)
 player_d = []
 comp_d = []
 players = []
@@ -7,6 +8,7 @@ snake = []
 height = -1
 pole_snake = []
 move = None
+
 for i in range(0, 7):
     deleted_d = random.choice(dominoes)
     player_d.append(deleted_d)
@@ -44,21 +46,73 @@ def pole():
 
 def player_move(player_action):
     global move
-    if 0 <= player_action <= int(len(player_d)):
-        pole_snake.append(player_d[player_action-1])
-        player_d.remove(player_d[player_action-1])
-        move = "computer"
+    if 0 < player_action <= int(len(player_d)):
+        if pole_snake[-1][1] == player_d[player_action-1][0]:
+            pole_snake.append(player_d[player_action-1])
+            player_d.remove(player_d[player_action - 1])
+            move = "computer"
+        elif pole_snake[-1][1] == player_d[player_action-1][1]:
+            pole_snake.append(player_d[player_action - 1][::-1])
+            player_d.remove(player_d[player_action - 1])
+            move = "computer"
+        else:
+            print("Illegal move. Please try again.")
+    elif -int(len(player_d)) <= player_action < 0:
+        if pole_snake[0][0] == player_d[-player_action - 1][1]:
+            pole_snake.insert(0, player_d[-player_action - 1])
+            player_d.remove(player_d[-player_action - 1])
+            move = "computer"
+        elif pole_snake[0][0] == player_d[-player_action - 1][0]:
+            pole_snake.insert(0, player_d[-player_action - 1][::-1])
+            player_d.remove(player_d[-player_action - 1])
+            move = "computer"
+        else:
+            print("Illegal move. Please try again.")
+    elif player_action == 0:
+        player_d.append(dominoes[0])
+        dominoes.remove(dominoes[0])
+    elif player_action == 0:
+        print("Invalid input. Please try again.")
 
 
 def comp_move():
     global move
-    comp_action = random.randint(0, len(comp_d)-1)
-    pole_snake.append(comp_d[comp_action])
-    comp_d.remove(comp_d[comp_action])
+    while True:
+        comp_action = random.randint(-len(comp_d)+1, len(comp_d)-1)
+        if 0 < comp_action <= len(comp_d):
+            if pole_snake[-1][1] == comp_d[comp_action][0]:
+                pole_snake.append(comp_d[comp_action])
+                comp_d.remove(comp_d[comp_action])
+                move = "player"
+                break
+            elif pole_snake[-1][1] == comp_d[comp_action][1]:
+                pole_snake.append(comp_d[comp_action][::-1])
+                comp_d.remove(comp_d[comp_action])
+                move = "player"
+                break
+            else:
+                continue
+        elif -len(comp_d) <= comp_action < 0:
+            if pole_snake[0][0] == comp_d[-comp_action - 1][1]:
+                pole_snake.insert(0, comp_d[-comp_action-1])
+                comp_d.remove(comp_d[comp_action])
+                move = "player"
+                break
+            elif pole_snake[0][0] == comp_d[-comp_action - 1][0]:
+                pole_snake.insert(0, comp_d[-comp_action - 1][::-1])
+                comp_d.remove(comp_d[comp_action])
+                move = "player"
+                break
+            else:
+                continue
+        elif comp_action == 0:
+            comp_d.append(dominoes[0])
+            dominoes.remove(dominoes[0])
+            move = "player"
+            break
 
 
 pole()
-
 while True:
     if move == "computer":
         print("Status: Computer is about to make a move. Press Enter to continue...")
@@ -74,6 +128,12 @@ while True:
             continue
         else:
             if 0 <= int(player_choice) <= int(len(player_d)):
+                player_move(int(player_choice))
+                move = "computer"
+            elif -int(len(player_d)) <= int(player_choice) < 0:
+                player_move(int(player_choice))
+                move = "computer"
+            elif int(player_choice) == 0:
                 player_move(int(player_choice))
                 move = "computer"
             else:
