@@ -147,7 +147,7 @@ while True:
             else:
                 print("Invalid input. Please try again.")
     pole()
-    if len(comp_d) == 0:
+    if len(logic) == 0:
         print("Status: The game is over. The computer won!")
         break
     elif len(player_d) == 0:
