@@ -96,6 +96,7 @@ def comp_logic(comp_d):
     return last_dict
 
 
+comp_logic(comp_d)
 logic = comp_logic(comp_d)
 
 pole()
