@@ -1,0 +1,4 @@
+Savelii: 5/5 in level 2 Squaring numbers from 11 to 29
+Savelii: 5/5 in level 1 Simple arithmetic operations with numbers from 2 to 9
+Igor: 4/5 in level 1 Simple arithmetic operations with numbers from 2 to 9
+Igor: 5/5 in level 2 Squaring numbers from 11 to 29
