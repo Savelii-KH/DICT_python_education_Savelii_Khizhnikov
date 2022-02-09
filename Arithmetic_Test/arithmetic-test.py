@@ -92,7 +92,7 @@ def level_3():
 
 
 def score_saving():
-    global level, scores, completed_levels
+    global level, scores, completed_levels, score
     while True:
         print("\nWould you like to save your result to the file? For save print - 1, without saving  - 0.")
         try:
@@ -108,6 +108,9 @@ def score_saving():
 {result}
 {"-" * 100}\n""")
                         print("The results are saved in ""results.txt"" \n")
+                        completed_levels.clear()
+                        scores.clear()
+                        score = 0
                         break
                 except FileNotFoundError:
                     with open("result.txt", "w") as f:
@@ -115,6 +118,9 @@ def score_saving():
 {result}
 {"-" * 100}\n""")
                         print("The results are saved in ""results.txt"" \n")
+                        completed_levels.clear()
+                        scores.clear()
+                        score = 0
                         break
             elif action == 0:
                 break
@@ -122,6 +128,7 @@ def score_saving():
                 print("Choose one of the options")
         except ValueError:
             print("Incorrect format")
+    return score
 
 
 while True:
