@@ -30,5 +30,21 @@ while True:
         label = input("Label: ")
         url = input("URL: ")
         markdown.append(f"""[{label}] ({url})""")
+    elif choice == parameter[6]:
+        try:
+            num_of_rows = int(input("Number of rows: "))
+            for i in range(0, num_of_rows):
+                row = input(f"Row #{i+1}: ")
+                markdown.append(f"{i+1}. {row}")
+        except ValueError:
+            print("Only numerical values!")
+    elif choice == parameter[7]:
+        try:
+            num_of_rows = int(input("Number of rows: "))
+            for i in range(0, num_of_rows):
+                row = input(f"Row #{i + 1}: ")
+                markdown.append(f"* {row}")
+        except ValueError:
+            print("Only numerical values!")
     else:
         print("Unknown formatter type or command")
