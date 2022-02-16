@@ -1,44 +1,30 @@
+import sys
+
+
 class Markdown:
     def __init__(self):
         self.markdown = []
-        self.str_parameter = """plain, bold, italic, 
-bold italic, header, 
-link, inline-code, ordered-list, 
-unordered-list, new-line"""
 
         self.parameter = ["plain", "bold", "italic", "bold italic",
                           "header", "link", "inline-code", "ordered-list",
                           "unordered-list", "new-line", "!help", "!done", "!exit"]
+        self.greetings()
 
+    def greetings(self):
+        print(f"""\n{"-"*27} Markdown editor {"-"*26}
+| It's a simple markdown editor where you can easily create something|
+| beautiful with a set of commands. If you type "plain" you will be  |
+| given the choice to further format the text you enter or not. From |
+| the valid formats you can choose: italic, bold, bold italic. This  |
+| way you can format headers as well. For more information type      |
+|"!help"                                                             |""")
         self.menu()
 
     def menu(self):
-        while True:
-            print(f"""{"-"*70}\n{"".join(self.markdown)}\n{"-"*70}""")
-            choice = input("Choose formatter: ")
-            if choice == self.parameter[0]:
-                self.plain()
-            elif choice == self.parameter[4]:
-                self.header()
-            elif choice == self.parameter[5]:
-                self.link()
-            elif choice == self.parameter[6]:
-                self.inline_code()
-            elif choice == self.parameter[7]:
-                self.ordered_list()
-            elif choice == self.parameter[8]:
-                self.unordered_list()
-            elif choice == self.parameter[9]:
-                self.new_line()
-            elif choice == self.parameter[10]:
-                self.help()
-            elif choice == self.parameter[11]:
-                self.done()
-            elif choice == self.parameter[12]:
-                break
-            else:
-                print("Incorrect parameter! Please try again")
-            break
+        pass
+
+    def stop(self):
+        sys.exit()
 
     def plain(self):
         print(f"""{"-"*70}\nDo you want to change the font type (yes/no)? """)
@@ -56,12 +42,12 @@ unordered-list, new-line"""
 
     def font_type(self):
         print(f"""{"-"*70}\nChoose what type of font you want: bold, italic or bold italic""")
-        choice = input("• ").lower()
-        if choice == self.parameter[1]:
+        choice = input("• ").lower().split()
+        if choice[0] == self.parameter[1]:
             self.bold()
-        elif choice == self.parameter[2]:
+        elif choice[0] == self.parameter[2]:
             self.italic()
-        elif choice == self.parameter[3]:
+        elif choice[0] == self.parameter[3]:
             self.bold_italic()
         else:
             print("Incorrect parameter! Please try again")
@@ -86,18 +72,61 @@ unordered-list, new-line"""
         self.menu()
 
     def header(self):
+        levels = 0
         try:
-            print("-" * 70)
-            level = int(input("Level: "))
+            print(f"""{"-"*70}\nWrite number of rows:""")
+            level = int(input("• "))
             if 1 <= level <= 6:
                 levels = "#" * level
-                header = input("Text: ")
-                self.markdown.append(f"{levels} {header}\n")
-                self.menu()
-            else:
-                print("Value must be between 1 and 6")
+                self.header_type(levels)
         except ValueError:
-            print("Enter a numeric value!")
+            print("Number must be between 1 and 6")
+            self.header()
+        return levels
+
+    def header_type(self, levels):
+        print(f"""{"-" * 70}\nDo you want to change the font type (yes/no)? """)
+        choice = input("• ").lower().split()
+        if choice[0] == "yes":
+            self.header_choice_type(levels)
+        elif choice[0] == "no":
+            self.header_plane(levels)
+        else:
+            print("Incorrect parameter! Please try again")
+            self.header_type(levels)
+
+    def header_choice_type(self, levels):
+        print(f"""{"-"*70}\nChoose what type of font you want: bold, italic or bold italic""")
+        choice = input("• ").lower().split()
+        if choice[0] == self.parameter[1]:
+            self.header_bold(levels)
+        elif choice[0] == self.parameter[2]:
+            self.header_italic(levels)
+        elif choice[0] == self.parameter[3]:
+            self.header_bold_italic(levels)
+        else:
+            print("Incorrect parameter! Please try again")
+            self.header_choice_type(levels)
+
+    def header_plane(self, levels):
+        header = input("Text: ")
+        self.markdown.append(f"{levels} {header}\n")
+        self.menu()
+
+    def header_bold(self, levels):
+        header = input("Text: ")
+        self.markdown.append(f"{levels}**{header}**\n")
+        self.menu()
+
+    def header_italic(self, levels):
+        header = input("Text: ")
+        self.markdown.append(f"{levels}*{header}*\n")
+        self.menu()
+
+    def header_bold_italic(self, levels):
+        header = input("Text: ")
+        self.markdown.append(f"{levels}***{header}***\n")
+        self.menu()
 
     def link(self):
         print("-" * 70)
@@ -139,7 +168,20 @@ unordered-list, new-line"""
         self.menu()
 
     def help(self):
-        print(f"""{"-"*70}\nAvailable formatters: {self.str_parameter}""")
+        print(f"""{"-"*70}
+{self.parameter[0]}{" " * (14 - len(self.parameter[0]))} -      your text;
+{self.parameter[1]}{" " * (14 - len(self.parameter[1]))} -      bold text;
+{self.parameter[2]}{" " * (14 - len(self.parameter[2]))} -      italic text;
+{self.parameter[3]}{" " * (14 - len(self.parameter[3]))} -      bold italic text;
+{self.parameter[4]}{" " * (14 - len(self.parameter[4]))} -      head of text;
+{self.parameter[5]}{" " * (14 - len(self.parameter[5]))} -      link to a web resource with its signature;
+{self.parameter[6]}{" " * (14 - len(self.parameter[6]))} -      your script;
+{self.parameter[7]}{" " * (14 - len(self.parameter[7]))} -      numbered list;
+{self.parameter[8]}{" " * (14 - len(self.parameter[8]))} -      list without numbering;
+{self.parameter[9]}{" " * (14 - len(self.parameter[9]))} -      indent;
+{self.parameter[10]}{" " * (14 - len(self.parameter[10]))} -      help;
+{self.parameter[11]}{" " * (14 - len(self.parameter[11]))} -      save;
+{self.parameter[12]}{" " * (14 - len(self.parameter[12]))} -      shutdown without saving.""")
         self.menu()
 
     def done(self):
@@ -163,4 +205,30 @@ unordered-list, new-line"""
 
 
 if __name__ == "__main__":
-    Markdown()
+    mark = Markdown()
+    while True:
+        print(f"""{"-" * 70}\n{"".join(mark.markdown)}\n{"-" * 70}""")
+        print("Write a command:")
+        action = input("• ").lower().split()
+        if action[0] == mark.parameter[0]:
+            mark.plain()
+        elif action[0] == mark.parameter[4]:
+            mark.header()
+        elif action[0] == mark.parameter[5]:
+            mark.link()
+        elif action[0] == mark.parameter[6]:
+            mark.inline_code()
+        elif action[0] == mark.parameter[7]:
+            mark.ordered_list()
+        elif action[0] == mark.parameter[8]:
+            mark.unordered_list()
+        elif action[0] == mark.parameter[9]:
+            mark.new_line()
+        elif action[0] == mark.parameter[10]:
+            mark.help()
+        elif action[0] == mark.parameter[11]:
+            mark.done()
+        elif action[0] == mark.parameter[12]:
+            mark.stop()
+        else:
+            print("Incorrect parameter! Please try again")
