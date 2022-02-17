@@ -5,7 +5,7 @@ class Markdown:
     def __init__(self):
         self.markdown = []
 
-        self.parameter = ["plain", "bold", "italic", "bold italic",
+        self.parameter = ["plain", "bold", "italic", "bold-italic",
                           "header", "link", "inline-code", "ordered-list",
                           "unordered-list", "new-line", "!help", "!done", "!exit"]
         self.greetings()
@@ -18,24 +18,17 @@ class Markdown:
 | the valid formats you can choose: italic, bold, bold italic. This  |
 | way you can format headers as well. For more information type      |
 |"!help"                                                             |""")
-        self.menu()
-
-    def menu(self):
-        pass
-
-    def stop(self):
-        sys.exit()
 
     def plain(self):
         print(f"""{"-"*70}\nDo you want to change the font type (yes/no)? """)
         choice = input("• ").lower()
         if choice == "yes":
             self.font_type()
-            self.menu()
+
         elif choice == "no":
             text = input("Text: ")
             self.markdown.append(f"\n{text}")
-            self.menu()
+
         else:
             print("Incorrect parameter! Please try again")
             self.plain()
@@ -57,19 +50,16 @@ class Markdown:
         print("-"*70)
         text = input("Text: ")
         self.markdown.append(f"**{text}**\n")
-        self.menu()
 
     def italic(self):
         print("-" * 70)
         text = input("Text: ")
         self.markdown.append(f"*{text}*\n")
-        self.menu()
 
     def bold_italic(self):
         print("-" * 70)
         text = input("Text: ")
         self.markdown.append(f"***{text}***\n")
-        self.menu()
 
     def header(self):
         levels = 0
@@ -96,7 +86,7 @@ class Markdown:
             self.header_type(levels)
 
     def header_choice_type(self, levels):
-        print(f"""{"-"*70}\nChoose what type of font you want: bold, italic or bold italic""")
+        print(f"""{"-"*70}\nChoose what type of font you want: bold, italic or bold-italic""")
         choice = input("• ").lower().split()
         if choice[0] == self.parameter[1]:
             self.header_bold(levels)
@@ -111,35 +101,29 @@ class Markdown:
     def header_plane(self, levels):
         header = input("Text: ")
         self.markdown.append(f"{levels} {header}\n")
-        self.menu()
 
     def header_bold(self, levels):
         header = input("Text: ")
         self.markdown.append(f"{levels}**{header}**\n")
-        self.menu()
 
     def header_italic(self, levels):
         header = input("Text: ")
         self.markdown.append(f"{levels}*{header}*\n")
-        self.menu()
 
     def header_bold_italic(self, levels):
         header = input("Text: ")
         self.markdown.append(f"{levels}***{header}***\n")
-        self.menu()
 
     def link(self):
         print("-" * 70)
         label = input("Label: ")
         url = input("URL: ")
         self.markdown.append(f"""[{label}] ({url})\n""")
-        self.menu()
 
     def inline_code(self):
         print("-" * 70)
         code = input("Code: ")
         self.markdown.append(f"""`{code}`\n""")
-        self.menu()
 
     def ordered_list(self):
         try:
@@ -148,7 +132,7 @@ class Markdown:
             for i in range(0, num_of_rows):
                 row = input(f"Row #{i + 1}: ")
                 self.markdown.append(f"{i + 1}. {row}\n")
-            self.menu()
+
         except ValueError:
             print("Only numerical values!")
 
@@ -159,13 +143,12 @@ class Markdown:
             for i in range(0, num_of_rows):
                 row = input(f"Row #{i + 1}: ")
                 self.markdown.append(f"* {row}\n")
-            self.menu()
+
         except ValueError:
             print("Only numerical values!")
 
     def new_line(self):
         self.markdown.append("\n")
-        self.menu()
 
     def help(self):
         print(f"""{"-"*70}
@@ -182,7 +165,6 @@ class Markdown:
 {self.parameter[10]}{" " * (14 - len(self.parameter[10]))} -      help;
 {self.parameter[11]}{" " * (14 - len(self.parameter[11]))} -      save;
 {self.parameter[12]}{" " * (14 - len(self.parameter[12]))} -      shutdown without saving.""")
-        self.menu()
 
     def done(self):
         print(f"""{"-"*70}\nDo you want save your file (yes/no)?""")
@@ -190,7 +172,7 @@ class Markdown:
         if choice == "yes":
             self.save()
         elif choice == "no":
-            self.menu()
+            pass
         else:
             print("Incorrect parameter! Please try again")
             self.done()
@@ -201,7 +183,6 @@ class Markdown:
         with open(f"{name}.md", "w+") as f:
             f.write(f"""{"".join(self.markdown)} \n""")
             self.markdown.clear()
-        self.menu()
 
 
 if __name__ == "__main__":
@@ -229,6 +210,6 @@ if __name__ == "__main__":
         elif action[0] == mark.parameter[11]:
             mark.done()
         elif action[0] == mark.parameter[12]:
-            mark.stop()
+            sys.exit()
         else:
             print("Incorrect parameter! Please try again")
