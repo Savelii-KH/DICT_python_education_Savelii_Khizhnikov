@@ -1,8 +1,15 @@
-cd = {"ARS": 0.82, "HNL": 0.17, "AUD": 1.9622, "MAD": 0.208, "USD": 0.033, "EUR": 0.028}
-while True:
-    try:
-        tugriks = float(input("Please, enter the number of tugriks you have: "))
-        [print(f"I will get {round(cd[i] * tugriks, 2)} {i} from the sale of {tugriks} tugriks.") for i in cd.keys()]
-        break
-    except ValueError:
-        print("ERROR!!! ONLY NUMERICAL VALUES!!!\n")
+import requests
+import simplejson
+
+
+if __name__ == "__main__":
+    while True:
+        try:
+            currency = input("Enter currency code: ").lower().strip()
+            break
+        except simplejson.JSONDecodeError:
+            print("Incorrect currency code")
+    r = requests.get(f"http://www.floatrates.com/daily/{currency}.json")
+    course = r.json()
+    print(f"{course['usd']['code']} to {currency.upper()} = {round(course['usd']['inverseRate'], 2)}")
+    print(f"{course['eur']['code']} to {currency.upper()} = {round(course['eur']['inverseRate'], 2)}")
