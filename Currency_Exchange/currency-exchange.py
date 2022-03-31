@@ -7,6 +7,8 @@ class Requests:
     def __init__(self, const_currency):
         self.const_currency = const_currency
         self.currency = input("• ").lower().strip()
+        if self.currency == "exit":
+            sys.exit()
         try:
             self.value = float(input("• "))
         except ValueError:
@@ -64,7 +66,4 @@ You received {round(self.course[self.currency] * self.value, 2)} {"".join(self.c
 
 if __name__ == "__main__":
     cc = input("• ").lower().strip()
-    if cc == "exit":
-        sys.exit()
-    else:
-        Requests(cc).main()
+    Requests(cc).main()
