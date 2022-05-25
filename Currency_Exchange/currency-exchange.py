@@ -1,9 +1,9 @@
+cd = {"ARS": 0.82, "HNL": 0.17, "AUD": 1.9622, "MAD": 0.208, "USD": 0.033, "EUR": 0.028}
 if __name__ == "__main__":
     while True:
         try:
-            a = float(input("Please, enter the number of tugriks you have: "))
-            b = float(input("Please, enter the exchange rate: "))
+            tugriks = float(input("Please, enter the number of tugriks you have: "))
             break
         except ValueError:
-            print("Only numerical values!")
-    print(f"The total amount of dollars: {round(a * b, 2)}")
+            print("ERROR!!! ONLY NUMERICAL VALUES!!!\n")
+    [print(f"I will get {round(cd[i] * tugriks, 2)} {i} from the sale of {tugriks} tugriks.") for i in cd.keys()]
